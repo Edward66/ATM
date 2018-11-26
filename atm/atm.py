@@ -1,0 +1,2 @@
+def atm():
+    print('ok')
