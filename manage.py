@@ -1,6 +1,7 @@
 from shopping_mall import shopping
 from atm import atm
 
+
 def main():
     while True:
         info = '''
@@ -12,18 +13,15 @@ def main():
         '''
         print(info)
         user_input = input('>>>').strip()
-        if user_input.isdigit() and len(user_input):
-            if user_input == '1':
-                shopping.shopping_car()
-            elif user_input == '2':
-                atm.atm()
-            elif user_input == '3':
-                print('欢迎下次光临')
-                break
-            else:
-                print('您的输入有误')
+        if user_input == '1':
+            shopping.shopping_car()
+        elif user_input == '2':
+            atm.atm_entrance()
+        elif user_input == '3':
+            print('欢迎下次光临')
+            break
         else:
-            print('您的输入有误')
+            print('输入不合法，请按提示输入数字')
 
 
 if __name__ == '__main__':
