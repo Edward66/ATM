@@ -4,14 +4,21 @@ from settings.settings import BASE_DIR
 from utils import logging_atm
 
 
-def account_info(user_money):
+def account_info():
     try:
         with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'r', encoding='utf-8') as f:
             user_info = json.load(f)
     except FileNotFoundError:
         print('\033[31m数据库出错或数据不存在，请稍后再试,check_account\033[0m')
     else:
-        print('\033[31m您的当前余额为%s\033[0m' % user_money)
+        while True:
+            username = input('请输入要查看的用户名,按q返回上一层').strip()
+            if username in user_info:
+                print('用户\033[31m{0}的额度为{1}\033[0m'.format(username, user_info[username]['amount']))
+            elif username.lower() == 'q':
+                break
+            else:
+                print('\033[31m用户名不存在\033[0m')
 
 
 def add_account(username):
@@ -23,8 +30,8 @@ def add_account(username):
     else:
         while True:
             new_username = input('请输入用户名,按q返回上一层:').strip()
-            if new_username in user_info:
-                print('用户名已存在')
+            if new_username in user_info or len(new_username) < 6:
+                print('\033[31m用户名已存在或用户名小于6位\033[0m')
                 continue
             if new_username.lower() == 'q':
                 break
@@ -56,18 +63,23 @@ def frozen_account(username):
         print('\033[31m数据库出错或数据不存在，请稍后再试,frozen_account\033[0m')
     else:
         while True:
-            choice = input('\033[31m确认要冻结账户吗？确认请按y,返回上一层请按q\033[0m').strip()
-            if choice.lower() == 'q':
+            frozen_username = input('\033[31m请输入要冻结的账户名,按q返回上一层\033[0m').strip()
+            if frozen_username.lower() == 'q':
                 break
-            if choice.lower() == 'y':
-                user_info[username]['status'] = 1
+            if frozen_username in user_info:
+                user_info[frozen_username]['status'] = 1
                 with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'w', encoding='utf-8') as f:
                     json.dump(user_info, f)
                 logging_atm.logging_frozen_account(username)
-                exit('冻结成功，程序自动退出。')
+                print('\033[31m冻结成功。\033[0m')
+            else:
+                print('\033[31m用户名不存在，请重新输入\033[0m')
 
 
 def manage_account(username, user_money):
+    if username != 'root':
+        print('\033[31m非root用户不能管理账户\033[0m')
+        return None
     info = '''
     ---------- 欢迎来到账户管理中心 ----------
     请选择要进行的操作:
@@ -80,7 +92,7 @@ def manage_account(username, user_money):
         print(info)
         choice = input('>>>').strip()
         if choice == '1':
-            account_info(user_money)
+            account_info()
         elif choice == '2':
             add_account(username)
         elif choice == '3':

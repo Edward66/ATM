@@ -22,17 +22,17 @@ def atm_entrance(username, user_money, *args, **kwargs):
     while True:
         print(info)
         choice = input('>>>').strip()
-        if choice == '1':
+        if choice == '1' and username != 'root':
             withdraw.withdraw_money(username, user_money)
-        elif choice == '2':
+        elif choice == '2' and username != 'root':
             transfer.transfer_money(username, user_money)
-        elif choice == '3':
+        elif choice == '3' and username != 'root':
             repayment.repayment_money(username, user_money)
-        elif choice == '4':
+        elif choice == '4' and username != 'root':
             show_consume.water_consumption(username)
         elif choice == '5':
             account.manage_account(username, user_money)
         elif choice == '6':
             break
         else:
-            print('\033[31m输入不合法，请按提示输入数字\033[0m')
+            print('\033[31m输入不合法，请按提示输入数字,或您是管理员\033[0m')

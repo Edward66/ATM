@@ -7,6 +7,9 @@ from settings.settings import BASE_DIR
 
 @user_verify.user_verify
 def check_out(username, user_money, goods):
+    if username == 'root':
+        print('\033[31m 您是管理员，不能购物\033[0m')
+        return None
     print('您购买的商品如下:')
     goods_price = 0
     for index, good in enumerate(goods):

@@ -1,7 +1,6 @@
 # ATM
 ## Using basic python grammar realizes the function of ATM.
 
-### github地址:https://github.com/Edward66/ATM
 ### 函数作业：模拟实现一个ATM + 购物商城程序
 
     1.额度 15000或自定义
@@ -40,7 +39,7 @@
     └── utils  工具
         ├── __init__.py
         ├── __pycache__
-        ├── generated_db_info.py  生成初始用户信息和商品信息
+        ├── generated_db_info.py  生成初始用户信息和商品信息,需先生成用户信息，里面有管理员账号。
         ├── logging_atm.py   生成atm操作的log文件
         ├── logging_consume.py  生成消费记录的log文件
         └── user_verify.py   用户认证登陆

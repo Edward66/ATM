@@ -23,7 +23,7 @@ def repayment_money(username, user_money):
                 print('正在还款中......')
                 with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'w', encoding='utf-8') as f:
                     json.dump(user_info, f)
-                print('还款成功，还款%s,您在账户余额为%s' % (repay_amount, user_money))
+                print('\033[31m还款成功，还款%s,您在账户余额为%s\033[0m' % (repay_amount, user_money))
                 logging_atm.logging_repayment(username, repay_amount, user_money)
 
             else:

@@ -11,8 +11,9 @@ status代表状态status=0的时候代表正常，status=1的时候表示用户�
 '''
 
 user_info = {'edward': {'username': 'edward', 'password': '112233', 'amount': 20000, 'status': 0},
-             'john': {'username': 'john', 'password': '123123', 'amount': 20000, 'status': 0},
-             'mark': {'username': 'mark', 'password': '121212', 'amount': 20000, 'status': 0},
+             'john11': {'username': 'john', 'password': '123123', 'amount': 20000, 'status': 0},
+             'mark11': {'username': 'mark', 'password': '121212', 'amount': 20000, 'status': 0},
+             "root": {"username": "root", "password": "root123", 'status': 0, 'amount': 0}
              }
 
 # 生成商品信息
