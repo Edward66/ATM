@@ -1,0 +1,38 @@
+{
+  "edward": {
+    "username": "edward",
+    "password": "112233",
+    "amount": 20675.0,
+    "status": 0
+  },
+  "john": {
+    "username": "john",
+    "password": "123123",
+    "amount": 24000,
+    "status": 0
+  },
+  "mark": {
+    "username": "mark",
+    "password": "121212",
+    "amount": 40000,
+    "status": 0
+  },
+  "ann": {
+    "username": "ann",
+    "password": "ann",
+    "amount": 110000,
+    "status": 1
+  },
+  "bob": {
+    "username": "bob",
+    "password": "qqwwee",
+    "amount": 0,
+    "status": 1
+  },
+  "steve": {
+    "username": "steve",
+    "password": "qqwwee",
+    "amount": -10075,
+    "status": 0
+  }
+}
