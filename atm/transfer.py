@@ -10,13 +10,16 @@ def transfer_money(username, user_money):
         with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'r', encoding='utf-8') as f:
             user_info = json.load(f)
     except FileNotFoundError:
-        print('数据库出错或数据不存在，请稍后再试,transfer')
+        print('\033[31m数据库出错或数据不存在，请稍后再试,transfer\033[0m')
     else:
         while True:
             print('---------- 您当前的位置是:转账中心 ----------')
             target_username = input('请输入\033[31m要转账的用户名\033[0m,返回上一层请按q').strip()
             if target_username.lower() == 'q':
                 break
+            if target_username == username:
+                print('\033[31m您不能转账给自己\033[0m')
+                continue
             if target_username in user_info:
                 while True:
                     print('---------- 您当前的位置是:转账中心 ----------')
@@ -37,8 +40,8 @@ def transfer_money(username, user_money):
                             logging_atm.logging_transfer(username, target_username, transfer_amount, user_money)
 
                         else:
-                            print('您的账户余额不足')
+                            print('\033[31m您的账户余额不足\033[0m')
                     else:
-                        print('输入不合法,请重新输入')
+                        print('\033[31m输入不合法,请重新输入\033[0m')
             else:
                 print('用户名不存在')

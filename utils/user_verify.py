@@ -9,7 +9,7 @@ def user_verify(func):
             with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'r', encoding='utf-8') as f:
                 user_info = json.load(f)
         except:
-            print('数据库出错或数据不存在，请稍后再试,user_verify')
+            print('\033[31m数据库出错或数据不存在，请稍后再试,user_verify\033[0m')
         else:
             count = 3
             while True:
@@ -20,7 +20,7 @@ def user_verify(func):
                     break
                 if username in user_info:
                     if user_info[username]['status'] == 1:
-                        print('账号已被冻结')
+                        exit('账号已被冻结')
                         break
                     password = input('password:').strip()
                     if password.lower() == 'q':
@@ -34,10 +34,10 @@ def user_verify(func):
                             user_info[username]['status'] = 1
                             with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'w', encoding='utf-8') as f2:
                                 json.dump(user_info, f2)
-                            print('登录失败三次，自动退出')
-                            break
+                            exit('登录失败三次，账户被冻结，自动退出')
+
                         else:
-                            print('密码错误，请重新输入')
+                            print('\033[31m密码错误，请重新输入\033[0m')
                 else:
                     print('用户名不存在')
 

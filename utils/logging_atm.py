@@ -53,7 +53,7 @@ def logging_repayment(username, repay_amount, user_money):
 
 
 def logging_add_account(username, new_username):
-    logger = logging.getLogger('transfer')
+    logger = logging.getLogger('add account')
     logger.setLevel(logging.DEBUG)
 
     fh = handlers.RotatingFileHandler(
@@ -69,7 +69,7 @@ def logging_add_account(username, new_username):
 
 
 def logging_frozen_account(username):
-    logger = logging.getLogger('transfer')
+    logger = logging.getLogger('frozen account')
 
     fh = handlers.RotatingFileHandler(
         filename=os.path.join(BASE_DIR, 'log/%s_frozen_account.log' % username), maxBytes=1024 * 1024, backupCount=100)

@@ -5,10 +5,17 @@ import json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(sys)
 
+'''
+生成用户信息，amount代表用户的额度,当额度低于-15000的时候(调用信用卡接口结账的时候会判断)，就不能购物了。
+status代表状态status=0的时候代表正常，status=1的时候表示用户被锁定。
+'''
+
 user_info = {'edward': {'username': 'edward', 'password': '112233', 'amount': 20000, 'status': 0},
              'john': {'username': 'john', 'password': '123123', 'amount': 20000, 'status': 0},
              'mark': {'username': 'mark', 'password': '121212', 'amount': 20000, 'status': 0},
              }
+
+# 生成商品信息
 
 goods = [{'name': '大宝SOD蜜', 'price': 10}, {'name': '洗面奶', 'price': 50}, {'name': '老面包', 'price': 15},
          {'name': '小米电视', 'price': 4000},

@@ -9,7 +9,7 @@ def repayment_money(username, user_money):
         with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'r', encoding='utf-8') as f:
             user_info = json.load(f)
     except FileNotFoundError:
-        print('数据库出错或数据不存在,请稍后再试,repayment')
+        print('\033[31m数据库出错或数据不存在,请稍后再试,repayment\033[0m')
     else:
         while True:
             print('---------- 您当前的位置是:还款中心 ----------')
@@ -27,4 +27,4 @@ def repayment_money(username, user_money):
                 logging_atm.logging_repayment(username, repay_amount, user_money)
 
             else:
-                print('输入不合法，请重新输入')
+                print('\033[31m输入不合法，请重新输入\033[0m')

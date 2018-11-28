@@ -10,7 +10,7 @@ def shopping_car():
         with open(os.path.join(BASE_DIR, 'db/goods_info.json'), 'r', encoding='utf-8') as f:
             goods_info = json.load(f)
     except FileNotFoundError:
-        print('数据库出错或数据不存在，请稍后再试,shopping')
+        print('\033[31m数据库出错或数据不存在，请稍后再试,shopping\033[0m')
     else:
         shopping_list = []
         while True:
@@ -18,7 +18,8 @@ def shopping_car():
             for index, key in enumerate(goods_info):
                 print(index + 1, key['name'], key['price'])
             choice = input('请选择您要购买的商品序号,按q返回上一层,按c进入结算中心').strip()
-            if choice.isdigit() and len(choice) <= len(goods_info):
+            if choice.isdigit() and int(choice) <= len(goods_info):
+                print(len(goods_info))
                 choice = int(choice) - 1
                 shopping_list.append(goods_info[choice])
                 print('------>', shopping_list)
@@ -30,7 +31,7 @@ def shopping_car():
 
             elif choice.lower() == 'c':
                 if shopping_list == []:
-                    print('您的购物车没有商品')
+                    print('\033[31m您的购物车没有商品\033[0m')
                 else:
                     print('正在进入结算中心......')
                     return credit_card.check_out(shopping_list)
@@ -38,4 +39,4 @@ def shopping_car():
                 print('谢谢光临，退出商城')
                 break
             else:
-                print('输入不合法，请输入商品编号')
+                print('\033[31m 输入不合法，请输入正确的商品编号\033[0m')

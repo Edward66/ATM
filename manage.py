@@ -21,7 +21,7 @@ def main():
             print('欢迎下次光临')
             break
         else:
-            print('输入不合法，请按提示输入数字')
+            print('\033[31m输入不合法，请按提示输入数字\033[0m')
 
 
 if __name__ == '__main__':

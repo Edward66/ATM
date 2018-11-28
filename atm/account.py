@@ -9,7 +9,7 @@ def account_info(user_money):
         with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'r', encoding='utf-8') as f:
             user_info = json.load(f)
     except FileNotFoundError:
-        print('数据库出错或数据不存在，请稍后再试,check_account')
+        print('\033[31m数据库出错或数据不存在，请稍后再试,check_account\033[0m')
     else:
         print('\033[31m您的当前余额为%s\033[0m' % user_money)
 
@@ -19,7 +19,7 @@ def add_account(username):
         with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'r', encoding='utf-8') as f:
             user_info = json.load(f)
     except:
-        print('数据库出错或数据不存在，请稍后再试,add_account')
+        print('\033[31m数据库出错或数据不存在，请稍后再试,add_account\033[0m')
     else:
         while True:
             new_username = input('请输入用户名,按q返回上一层:').strip()
@@ -43,9 +43,9 @@ def add_account(username):
                     logging_atm.logging_add_account(username, new_username)
                     break
                 else:
-                    print('密码不一致，请重新输入')
+                    print('\033[31m密码不一致，请重新输入\033[0m')
             else:
-                print('用户名输入不一致，请重新输入')
+                print('\033[31m用户名输入不一致，请重新输入\033[0m')
 
 
 def frozen_account(username):
@@ -53,10 +53,10 @@ def frozen_account(username):
         with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'r', encoding='utf-8') as f:
             user_info = json.load(f)
     except FileNotFoundError:
-        print('数据库出错或数据不存在，请稍后再试,frozen_account')
+        print('\033[31m数据库出错或数据不存在，请稍后再试,frozen_account\033[0m')
     else:
         while True:
-            choice = input('确认要冻结账户吗？确认请按y,返回上一层请按q').strip()
+            choice = input('\033[31m确认要冻结账户吗？确认请按y,返回上一层请按q\033[0m').strip()
             if choice.lower() == 'q':
                 break
             if choice.lower() == 'y':
@@ -88,4 +88,4 @@ def manage_account(username, user_money):
         elif choice == '4':
             break
         else:
-            print('输入不合法，请按提示输入数字')
+            print('\033[31m输入不合法，请按提示输入数字\033[0m')

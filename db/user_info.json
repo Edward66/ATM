@@ -2,7 +2,7 @@
   "edward": {
     "username": "edward",
     "password": "112233",
-    "amount": 20675.0,
+    "amount": 37540.0,
     "status": 0
   },
   "john": {
@@ -14,7 +14,7 @@
   "mark": {
     "username": "mark",
     "password": "121212",
-    "amount": 40000,
+    "amount": 42000,
     "status": 0
   },
   "ann": {
@@ -33,6 +33,18 @@
     "username": "steve",
     "password": "qqwwee",
     "amount": -10075,
+    "status": 0
+  },
+  "pp": {
+    "username": "pp",
+    "password": "pp",
+    "amount": 0,
+    "status": 0
+  },
+  "cc": {
+    "username": "cc",
+    "password": "cc",
+    "amount": 0,
     "status": 0
   }
 }

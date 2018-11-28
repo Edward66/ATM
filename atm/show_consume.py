@@ -14,4 +14,4 @@ def water_consumption(username):
                     match_text = match.groupdict()
                     print("\033[31m{0}  {1}\033[0m".format(match_text['date'], match_text['message']))
     except FileNotFoundError:
-        print('数据库出错或数据不存在，请稍后再试，show_consume')
+        print('\033[31m数据库出错或数据不存在，请稍后再试，show_consume\033[0m')

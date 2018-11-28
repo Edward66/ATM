@@ -35,4 +35,4 @@ def atm_entrance(username, user_money, *args, **kwargs):
         elif choice == '6':
             break
         else:
-            print('输入不合法，请按提示输入数字')
+            print('\033[31m输入不合法，请按提示输入数字\033[0m')
