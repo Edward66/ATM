@@ -2,6 +2,7 @@ from shopping_mall import shopping
 from atm import atm
 
 
+
 def main():
     while True:
         info = '''

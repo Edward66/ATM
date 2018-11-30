@@ -10,11 +10,7 @@ sys.path.append(sys)
 status代表状态status=0的时候代表正常，status=1的时候表示用户被锁定。
 '''
 
-user_info = {'edward': {'username': 'edward', 'password': '112233', 'amount': 20000, 'status': 0},
-             'john11': {'username': 'john', 'password': '123123', 'amount': 20000, 'status': 0},
-             'mark11': {'username': 'mark', 'password': '121212', 'amount': 20000, 'status': 0},
-             "root": {"username": "root", "password": "root123", 'status': 0, 'amount': 0}
-             }
+user_info = {"root": {"username": "root", "password": "root123", 'status': 0, 'amount': 0}}
 
 # 生成商品信息
 
@@ -24,7 +20,9 @@ goods = [{'name': '大宝SOD蜜', 'price': 10}, {'name': '洗面奶', 'price': 5
          {'name': 'macbook air', 'price': 10000}, {'name': 'thinkpad', 'price': 8000},
          {'name': 'iphoneXS', 'price': 12000}, {'name': '老男孩教育', 'price': 13000}]
 
-with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'w', encoding='utf-8') as f:
+# 先创建root用户，在用root用户创建其他用户,新建用户初始金额15000
+
+with open(os.path.join(BASE_DIR, 'db/root_db.json'), 'w', encoding='utf-8') as f:
     json.dump(user_info, f)
 
 with open(os.path.join(BASE_DIR, 'db/goods_info.json'), 'w', encoding='utf-8') as f2:

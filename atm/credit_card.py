@@ -1,8 +1,9 @@
 import os
 import json
 from utils import user_verify
-from utils import logging_consume
+from utils import logger_info
 from settings.settings import BASE_DIR
+from utils import load_file
 
 
 @user_verify.user_verify
@@ -25,14 +26,14 @@ def check_out(username, user_money, goods):
         if user_money < -15000:
             print('\033[31m 超出额度，消费后额度为%s,您的信用额度为-15000元\033[0m' % user_money)
             return None
-        try:
-            with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'r', encoding='utf-8') as f:
-                user_info = json.load(f)
-        except FileNotFoundError:
-            print('\033[31m数据库出错或数据不存在，请稍后再试,credit_card\033[0m')
-        else:
-            user_info[username]['amount'] = user_money
-            with open(os.path.join(BASE_DIR, 'db/user_info.json'), 'w', encoding='utf-8') as f2:
-                json.dump(user_info, f2)
-            print('购买成功,您的账户余额为%s' % user_money)
-            logging_consume.per_month_consume(username, goods_price, *goods)
+        user_info = load_file.read_db(username)
+        if user_info is None:
+            print('\033[31m数据库出错或数据不存在，请稍后再试\033[0m')
+            return None
+        user_info[username]['amount'] = user_money
+        status = load_file.write_db(user_info, username)
+        if status is False:
+            print('写入数据库时出错，请稍后再试')
+            return None
+        print('购买成功,您的账户余额为%s' % user_money)
+        logger_info.per_month_consume(username, goods_price, *goods)
